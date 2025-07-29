@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome - Ajinkya Pawar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body class="bg-gray-50 text-gray-800 scroll-pt-20">
+
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Ajinkya Pawar</h1>
+            <nav class="space-x-6 text-sm">
+                <a href="#dashboard" class="hover:text-blue-600">Dashboard</a>
+                <a href="#settings" class="hover:text-blue-600">Settings</a>
+                <button id="logoutButton" class="bg-red-600 text-white px-3 py-1 rounded">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="text-center py-20 bg-gradient-to-br from-green-100 to-white" data-aos="fade-up">
+        <h2 class="text-4xl font-bold">Welcome, <span id="welcomeUsername">User</span>!</h2>
+        <p class="mt-4 text-xl max-w-xl mx-auto text-gray-600">You are now logged in. Explore your personalized content or manage your profile.</p>
+        <div class="mt-8 space-x-4">
+            <a href="#" class="inline-block bg-blue-600 text-white py-2 px-4 rounded">View My Projects</a>
+            <a href="#" class="inline-block bg-purple-600 text-white py-2 px-4 rounded">Edit Profile</a>
+        </div>
+    </section>
+
+    <section id="dashboard" class="scroll-mt-24 max-w-5xl mx-auto py-12 px-6" data-aos="fade-up">
+        <h3 class="text-3xl font-semibold mb-4">Your Dashboard</h3>
+        <p class="text-gray-700">This is where you can display content only visible to logged-in users, such as their specific projects, messages, or personalized statistics.</p>
+        <h4 class="text-2xl font-semibold mt-8 mb-4">Your Private Contacts (Example)</h4>
+        <ul id="privateContactsList" class="list-disc ml-6 space-y-2 text-gray-700">
+            <li>Contact 1: Alice (alice@example.com)</li>
+            <li>Contact 2: Bob (bob@example.com)</li>
+        </ul>
+    </section>
+
+    <section id="settings" class="scroll-mt-24 max-w-5xl mx-auto py-12 px-6" data-aos="fade-up">
+        <h3 class="text-3xl font-semibold mb-4">Account Settings</h3>
+        <p class="text-gray-700">Manage your account preferences, change password, etc. (implementation details would go here).</p>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="welcome-script.js"></script>
+</body>
+</html>

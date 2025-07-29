@@ -87,8 +87,16 @@ authForm.addEventListener("submit", async function (e) {
 
     if (response.ok) {
       // Check for successful HTTP status (200-299)
-      alert(data.message); // Display success message from backend
-      closeModal(); // Close modal on success
+      if (isLogin) {
+        alert(data.message + " Redirecting to welcome page..."); // Optional: show a quick alert
+        localStorage.setItem('loggedInUser', username); // Store username in localStorage
+        // If your backend also returns a token (e.g., JWT), store it here:
+        // localStorage.setItem('authToken', data.token);
+        window.location.href = 'welcome.html'; // Redirect to welcome page
+      } else {
+        alert(data.message); // For registration, just show success message
+        closeModal(); // Close modal after successful registration
+      }
     } else {
       // Handle API errors (e.g., 400, 401, 500)
       alert(`Error: ${data.detail || data.message || "Something went wrong."}`); // Display error message from backend
@@ -143,6 +151,9 @@ contactForm.addEventListener("submit", async function (e) {
 });
 
 // --- Dynamic Utilities (from your original script, keep as is) ---
+// These functions are not directly related to API calls but were part of your original script.
+// They can be used to dynamically update parts of your portfolio page if needed.
+
 function updateAboutSection(text) {
   const about = document.getElementById("about-text");
   if (about) about.innerText = text;
@@ -167,5 +178,19 @@ function addCertification(title, link) {
   }
 }
 
-// Initial form update when the page loads
+// Initial form update when the page loads (ensures correct modal state if opened immediately)
 document.addEventListener('DOMContentLoaded', updateAuthForm);
+
+// Optional: Hide the login button if user is already logged in (only useful if you don't redirect on page load)
+// For your current setup where login redirects to welcome.html, this is less critical
+// but if you ever make an SPA or want to keep user on same page, uncomment and adapt.
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    const loginButton = document.querySelector('button[onclick="openModal()"]');
+    if (localStorage.getItem('loggedInUser')) {
+        if (loginButton) {
+            loginButton.style.display = 'none'; // Or replace with a "Dashboard" button
+        }
+    }
+});
+*/
