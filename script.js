@@ -1,80 +1,62 @@
-let isLogin = true;
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const form = document.getElementById("authForm");
-const emailField = document.getElementById("email");
+const backendBaseURL = "https://portfolio-backend-rp78.onrender.com";
 
-function openModal() {
-  modal.classList.remove("hidden");
-  updateForm();
-}
-
-function closeModal() {
-  modal.classList.add("hidden");
-  form.reset();
-  isLogin = true;
-  updateForm();
-}
-
-function toggleAuth() {
-  isLogin = !isLogin;
-  updateForm();
-}
-
-function updateForm() {
-  modalTitle.innerText = isLogin ? "Login" : "Register";
-  const toggleText = form.querySelector("p");
-  toggleText.innerText = isLogin
-    ? "Don’t have an account? Register"
-    : "Already have an account? Login";
-
-  if (!isLogin) {
-    emailField.classList.remove("hidden");
-    emailField.required = true;
-  } else {
-    emailField.classList.add("hidden");
-    emailField.required = false;
-  }
-}
-
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-  const email = document.getElementById("email").value;
 
-  if (isLogin) {
-    alert(`Logging in user: ${username}`);
-    // TODO: Replace with actual login logic
-  } else {
-    alert(`Registering user: ${username} (${email})`);
-    // TODO: Replace with actual register logic
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  const endpoint = isLogin ? "/login" : "/register";
+  const payload = isLogin
+    ? { username, password }
+    : { username, email, password };
+
+  try {
+    const response = await fetch(`${backendBaseURL}${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      alert(`❌ Error: ${result.detail || result.message || "Something went wrong"}`);
+    } else {
+      alert(`✅ Success: ${result.message}`);
+      console.log("Token:", result.token || "No token returned");
+      closeModal(); // Close modal on success
+    }
+  } catch (error) {
+    console.error("❌ Network error:", error);
+    alert("❌ Network error. Try again later.");
+  }
+
+  if (!response.ok) {
+  alert(`❌ Error: ${result.detail || result.message || "Something went wrong"}`);
+} else {
+  alert(`✅ Success: ${result.message}`);
+  
+  if (result.token) {
+    localStorage.setItem("authToken", result.token);
+    localStorage.setItem("username", username);
+    console.log("Token stored in localStorage:", result.token);
   }
 
   closeModal();
+}
 });
 
-// Dynamic utilities (if needed)
-function updateAboutSection(text) {
-  const about = document.getElementById("about-text");
-  if (about) about.innerText = text;
-}
-
-function addSkill(skillName) {
-  const skillsGrid = document.getElementById("skills-grid");
-  if (skillsGrid) {
-    const div = document.createElement("div");
-    div.className = "bg-white shadow p-4 rounded";
-    div.innerText = skillName;
-    skillsGrid.appendChild(div);
+window.addEventListener("DOMContentLoaded", () => {
+  const storedUser = localStorage.getItem("username");
+  if (storedUser) {
+    document.getElementById("loginBtn").innerText = `Logout (${storedUser})`;
+    document.getElementById("loginBtn").onclick = () => {
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("username");
+      alert("Logged out successfully!");
+      window.location.reload(); // Refresh page
+    };
   }
-}
-
-function addCertification(title, link) {
-  const certs = document.getElementById("certifications-list");
-  if (certs) {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="${link}" class="text-blue-600 underline" target="_blank">${title}</a>`;
-    certs.appendChild(li);
-  }
-}
+});
