@@ -1,29 +1,40 @@
+// --- Global Variables & API Endpoints ---
 let isLogin = true;
 const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modalTitle");
-const form = document.getElementById("authForm");
+const authForm = document.getElementById("authForm"); // Renamed from 'form' to avoid conflict
 const emailField = document.getElementById("email");
 
+// Get the contact form
+const contactForm = document.querySelector("#contact form");
+
+// Backend API Endpoints
+const API_BASE_URL = "https://portfolio-backend-rp78.onrender.com";
+const REGISTER_API_URL = `${API_BASE_URL}/register`;
+const LOGIN_API_URL = `${API_BASE_URL}/login`;
+const CONTACT_API_URL = `${API_BASE_URL}/contact`;
+
+// --- Modal Functions (Login/Register) ---
 function openModal() {
   modal.classList.remove("hidden");
-  updateForm();
+  updateAuthForm(); // Use updateAuthForm to reflect the current state
 }
 
 function closeModal() {
   modal.classList.add("hidden");
-  form.reset();
-  isLogin = true;
-  updateForm();
+  authForm.reset();
+  isLogin = true; // Reset to login state when closing
+  updateAuthForm();
 }
 
 function toggleAuth() {
   isLogin = !isLogin;
-  updateForm();
+  updateAuthForm();
 }
 
-function updateForm() {
+function updateAuthForm() {
   modalTitle.innerText = isLogin ? "Login" : "Register";
-  const toggleText = form.querySelector("p");
+  const toggleText = authForm.querySelector("p");
   toggleText.innerText = isLogin
     ? "Don’t have an account? Register"
     : "Already have an account? Login";
@@ -37,24 +48,101 @@ function updateForm() {
   }
 }
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+// --- Event Listener for Login/Register Form Submission ---
+authForm.addEventListener("submit", async function (e) {
+  e.preventDefault(); // Prevent default form submission
+
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  const email = document.getElementById("email").value;
+  const email = document.getElementById("email").value; // Only used for registration
+
+  let apiUrl = "";
+  let requestBody = {};
 
   if (isLogin) {
-    alert(`Logging in user: ${username}`);
-    // TODO: Replace with actual login logic
+    apiUrl = LOGIN_API_URL;
+    requestBody = {
+      username: username,
+      password: password,
+    };
   } else {
-    alert(`Registering user: ${username} (${email})`);
-    // TODO: Replace with actual register logic
+    apiUrl = REGISTER_API_URL;
+    requestBody = {
+      username: username,
+      email: email,
+      password: password,
+    };
   }
 
-  closeModal();
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    const data = await response.json(); // Parse JSON response
+
+    if (response.ok) {
+      // Check for successful HTTP status (200-299)
+      alert(data.message); // Display success message from backend
+      closeModal(); // Close modal on success
+    } else {
+      // Handle API errors (e.g., 400, 401, 500)
+      alert(`Error: ${data.detail || data.message || "Something went wrong."}`); // Display error message from backend
+    }
+  } catch (error) {
+    // Handle network errors (e.g., server unreachable)
+    console.error("Fetch error:", error);
+    alert("Network error. Please try again later.");
+  }
 });
 
-// Dynamic utilities (if needed)
+// --- Event Listener for Contact Form Submission ---
+contactForm.addEventListener("submit", async function (e) {
+  e.preventDefault(); // Prevent default form submission
+
+  // Get values from contact form inputs
+  const name = contactForm.querySelector('input[placeholder="Your Name"]').value;
+  const email = contactForm.querySelector(
+    'input[placeholder="Your Email"]'
+  ).value;
+  const message = contactForm.querySelector(
+    'textarea[placeholder="Your Message"]'
+  ).value;
+
+  const requestBody = {
+    name: name,
+    email: email,
+    message: message,
+  };
+
+  try {
+    const response = await fetch(CONTACT_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Message sent successfully!");
+      contactForm.reset(); // Clear the form after successful submission
+    } else {
+      alert(`Error sending message: ${data.detail || data.message || "Please try again."}`);
+    }
+  } catch (error) {
+    console.error("Contact form fetch error:", error);
+    alert("Network error. Could not send message.");
+  }
+});
+
+// --- Dynamic Utilities (from your original script, keep as is) ---
 function updateAboutSection(text) {
   const about = document.getElementById("about-text");
   if (about) about.innerText = text;
@@ -78,3 +166,6 @@ function addCertification(title, link) {
     certs.appendChild(li);
   }
 }
+
+// Initial form update when the page loads
+document.addEventListener('DOMContentLoaded', updateAuthForm);
