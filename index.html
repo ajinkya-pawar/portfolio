@@ -2,62 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ajinkya Pawar's professional portfolio – Machine Learning Engineer & Backend Developer." />
+  <meta name="author" content="Ajinkya Pawar" />
   <title>Ajinkya Pawar – Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
-<body>
-  <header>
-    <h1>Ajinkya Pawar</h1>
-    <p>Machine Learning Enthusiast | Python Developer</p>
-    <nav>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <button onclick="openLogin()">Login</button>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Navbar -->
+<header class="bg-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Ajinkya Pawar</h1>
+    <nav class="space-x-6 text-sm">
+      <a href="#about" class="hover:text-blue-600">About</a>
+      <a href="#skills" class="hover:text-blue-600">Skills</a>
+      <a href="#projects" class="hover:text-blue-600">Projects</a>
+      <a href="#testimonials" class="hover:text-blue-600">Testimonials</a>
+      <a href="#certifications" class="hover:text-blue-600">Certifications</a>
+      <a href="#contact" class="hover:text-blue-600">Contact</a>
+      <button onclick="openModal()" class="bg-blue-600 text-white px-3 py-1 rounded">Login</button>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Python</li>
-      <li>SQL</li>
-      <li>Machine Learning</li>
-      <li>FastAPI</li>
-      <li>Git & GitHub</li>
-    </ul>
-  </section>
+<!-- Hero -->
+<section class="text-center py-20 bg-gradient-to-br from-blue-100 to-white" data-aos="fade-up">
+  <h2 class="text-4xl font-bold">Hi, I'm Ajinkya</h2>
+  <p class="mt-4 text-xl max-w-xl mx-auto text-gray-600">Machine Learning Engineer & Backend Developer. I design intelligent systems that deliver real-world value.</p>
+  <a href="#projects" class="inline-block mt-6 bg-blue-600 text-white py-2 px-4 rounded">Explore Projects</a>
+</section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li>📄 Resume Shortlisting using AI</li>
-      <li>🔍 Customer Churn Prediction</li>
-      <li>📈 Sales Forecasting with Prophet</li>
-    </ul>
-  </section>
+<!-- About -->
+<section id="about" class="max-w-5xl mx-auto py-12 px-6" data-aos="fade-up">
+  <h3 class="text-3xl font-semibold mb-6">About Me</h3>
+  <p id="about-text" class="text-gray-700 leading-relaxed">
+    I’m a Machine Learning Engineer and Backend Developer passionate about solving real-world problems through AI. I specialize in building intelligent, scalable systems with Python, FastAPI, and cloud technologies.
+  </p>
+</section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: ajinkya@example.com</p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/ajinkya" target="_blank">ajinkya</a></p>
-  </section>
+<!-- Skills -->
+<section id="skills" class="max-w-5xl mx-auto py-12 px-6" data-aos="fade-right">
+  <h3 class="text-3xl font-semibold mb-6">Skills & Tools</h3>
+  <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
+    <div class="bg-white shadow p-4 rounded">🐍 Python</div>
+    <div class="bg-white shadow p-4 rounded">⚙️ FastAPI</div>
+    <div class="bg-white shadow p-4 rounded">📊 Machine Learning</div>
+    <div class="bg-white shadow p-4 rounded">🗄️ PostgreSQL</div>
+    <div class="bg-white shadow p-4 rounded">🐳 Docker</div>
+    <div class="bg-white shadow p-4 rounded">🎨 Tailwind CSS</div>
+    <div class="bg-white shadow p-4 rounded">🧪 GitHub Actions</div>
+    <div class="bg-white shadow p-4 rounded">⚛️ React (Basics)</div>
+  </div>
+</section>
 
-  <!-- Login/Register Modal -->
-  <div id="authModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeLogin()">&times;</span>
-      <h2 id="authTitle">Login</h2>
-      <form id="authForm">
-        <input type="text" id="username" placeholder="Username" required />
-        <input type="password" id="password" placeholder="Password" required />
-        <button type="submit">Submit</button>
-        <p class="switch" onclick="toggleAuth()">Don't have an account? Register</p>
-      </form>
+<!-- Projects -->
+<section id="projects" class="max-w-5xl mx-auto py-12 px-6" data-aos="fade-left">
+  <h3 class="text-3xl font-semibold mb-6">Projects</h3>
+  <div class="space-y-6">
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+      <h4 class="text-xl font-bold">Resume Shortlisting with AI</h4>
+      <p class="text-gray-600 mt-2">Parsed resumes using NLP and matched with job descriptions, cutting screening time by 60%.</p>
+      <p class="text-sm text-gray-500 mt-1">Python, spaCy, FastAPI</p>
+      <a href="#" class="text-blue-600 mt-2 inline-block">View GitHub</a>
     </div>
   </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- Testimonials Carousel -->
+<section id="testimonials" class="bg-gray-100 py-12 px-6" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto">
+    <h3 class="text-3xl font-semibold mb-6">Testimonials</h3>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide bg-white p-6 rounded shadow">
+          <p class="italic">"Ajinkya is a brilliant developer and problem solver!"</p>
+          <p class="text-sm mt-2 text-right">— Senior Architect</p>
+        </div>
+        <div class="swiper-slide bg-white p-6 rounded shadow">
+          <p class="italic">"Always delivers high quality on time."</p>
+          <p class="text-sm mt-2 text-right">— Product Manager</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications" class="max-w-5xl mx-auto py-12 px-6">
+  <h3 class="text-3xl font-semibold mb-4">Certifications</h3>
+  <ul id="certifications-list" class="list-disc ml-6 space-y-2">
+    <!-- Dynamic certifications will be added here -->
+  </ul>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="max-w-5xl mx-auto py-12 px-6">
+  <h3 class="text-3xl font-semibold mb-4">Contact Me</h3>
+  <form class="space-y-4">
+    <input type="text" placeholder="Your Name" class="w-full border p-2 rounded" required />
+    <input type="email" placeholder="Your Email" class="w-full border p-2 rounded" required />
+    <textarea rows="4" placeholder="Your Message" class="w-full border p-2 rounded" required></textarea>
+    <button class="bg-blue-600 text-white py-2 px-4 rounded">Send</button>
+  </form>
+</section>
+
+<!-- Modal -->
+<div id="modal" role="dialog" aria-modal="true" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg p-6 w-80">
+    <h2 id="modalTitle" class="text-xl font-bold mb-4">Login</h2>
+    <form id="authForm" class="space-y-4">
+      <input type="text" id="username" placeholder="Username" required class="w-full border p-2 rounded" />
+      <input type="email" id="email" placeholder="Email (register only)" class="w-full border p-2 rounded hidden" />
+      <input type="password" id="password" placeholder="Password" required class="w-full border p-2 rounded" />
+      <button type="submit" class="bg-blue-600 w-full text-white py-2 rounded">Submit</button>
+      <p class="text-sm text-center text-blue-600 cursor-pointer" onclick="toggleAuth()">Don’t have an account? Register</p>
+    </form>
+    <button onclick="closeModal()" class="mt-4 text-sm text-gray-600 underline block mx-auto">Close</button>
+  </div>
+</div>
+
+<!-- JS Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+  const swiper = new Swiper('.swiper', { loop: true, autoplay: { delay: 3000 } });
+</script>
+<script src="script.js"></script>
 </body>
 </html>
