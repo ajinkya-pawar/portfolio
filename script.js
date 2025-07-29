@@ -24,9 +24,11 @@ function toggleAuth() {
 function updateForm() {
   modalTitle.innerText = isLogin ? "Login" : "Register";
   const toggleText = form.querySelector("p");
-  toggleText.innerText = isLogin
-    ? "Don’t have an account? Register"
-    : "Already have an account? Login";
+  if (toggleText) {
+    toggleText.innerText = isLogin
+      ? "Don’t have an account? Register"
+      : "Already have an account? Login";
+  }
 
   if (!isLogin) {
     emailField.classList.remove("hidden");
@@ -45,16 +47,16 @@ form.addEventListener("submit", function (e) {
 
   if (isLogin) {
     alert(`Logging in user: ${username}`);
-    // TODO: Replace with actual login logic
+    // TODO: Replace with backend logic or Firebase
   } else {
     alert(`Registering user: ${username} (${email})`);
-    // TODO: Replace with actual register logic
+    // TODO: Replace with backend logic or Firebase
   }
 
   closeModal();
 });
 
-// Dynamic utilities (if needed)
+// Dynamic content update helpers
 function updateAboutSection(text) {
   const about = document.getElementById("about-text");
   if (about) about.innerText = text;
@@ -78,3 +80,38 @@ function addCertification(title, link) {
     certs.appendChild(li);
   }
 }
+
+// Ensure fallback sections exist
+window.addEventListener("DOMContentLoaded", () => {
+  const anchor = document.getElementById("contact") || document.body;
+
+  if (!document.getElementById("about-text")) {
+    const aboutSection = document.createElement("section");
+    aboutSection.id = "about";
+    aboutSection.innerHTML = `
+      <h3>About Me</h3>
+      <p id="about-text">I’m a developer with a passion for AI-powered solutions...</p>
+    `;
+    anchor.parentNode.insertBefore(aboutSection, anchor);
+  }
+
+  if (!document.getElementById("skills-grid")) {
+    const skillSection = document.createElement("section");
+    skillSection.id = "skills";
+    skillSection.innerHTML = `
+      <h3>Skills</h3>
+      <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center"></div>
+    `;
+    anchor.parentNode.insertBefore(skillSection, anchor);
+  }
+
+  if (!document.getElementById("certifications-list")) {
+    const certSection = document.createElement("section");
+    certSection.id = "certifications";
+    certSection.innerHTML = `
+      <h3>Certifications</h3>
+      <ul id="certifications-list" class="list-disc ml-6 space-y-2"></ul>
+    `;
+    anchor.parentNode.insertBefore(certSection, anchor);
+  }
+});
