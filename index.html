@@ -2,27 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ajinkya's Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ajinkya Pawar – Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Hi, I'm Ajinkya Pawar 👋</h1>
+    <h1>Ajinkya Pawar</h1>
     <p>Machine Learning Enthusiast | Python Developer</p>
+    <nav>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button onclick="openLogin()">Login</button>
+    </nav>
   </header>
-  <section>
-    <h2>Projects</h2>
+
+  <section id="skills">
+    <h2>Skills</h2>
     <ul>
-      <li>🧠 Resume Shortlisting using AI</li>
-      <li>📊 Customer Churn Prediction</li>
-      <li>🛍️ Seasonal Banda App</li>
+      <li>Python</li>
+      <li>SQL</li>
+      <li>Machine Learning</li>
+      <li>FastAPI</li>
+      <li>Git & GitHub</li>
     </ul>
   </section>
-  <section>
-    <h2>Contact Me</h2>
-    <p>Email: ajinkya@example.com</p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/ajinkya">ajinkya</a></p>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li>📄 Resume Shortlisting using AI</li>
+      <li>🔍 Customer Churn Prediction</li>
+      <li>📈 Sales Forecasting with Prophet</li>
+    </ul>
   </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: ajinkya@example.com</p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/ajinkya" target="_blank">ajinkya</a></p>
+  </section>
+
+  <!-- Login/Register Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLogin()">&times;</span>
+      <h2 id="authTitle">Login</h2>
+      <form id="authForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Submit</button>
+        <p class="switch" onclick="toggleAuth()">Don't have an account? Register</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
