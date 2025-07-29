@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ajinkya Pawar's professional portfolio – Machine Learning Engineer & Backend Developer." />
-  <meta name="author" content="Ajinkya Pawar" />
   <title>Ajinkya Pawar – Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
@@ -36,17 +34,15 @@
 </section>
 
 <!-- About -->
-<section id="about" class="scroll-mt-20 max-w-5xl mx-auto py-12 px-6" data-aos="fade-up">
-  <h3 class="text-3xl font-semibold mb-6">About Me</h3>
-  <p id="about-text" class="text-gray-700 leading-relaxed">
-    I’m a Machine Learning Engineer and Backend Developer passionate about solving real-world problems through AI. I specialize in building intelligent, scalable systems with Python, FastAPI, and cloud technologies.
-  </p>
+<section id="about" class="scroll-mt-24 max-w-5xl mx-auto py-12 px-6" data-aos="fade-up">
+  <h3 class="text-3xl font-semibold mb-4">About Me</h3>
+  <p class="text-gray-700">I’m a Machine Learning Engineer and Backend Developer passionate about solving real-world problems through AI. I specialize in building intelligent, scalable systems with Python, FastAPI, and cloud technologies.</p>
 </section>
 
 <!-- Skills -->
-<section id="skills" class="scroll-mt-20 max-w-5xl mx-auto py-12 px-6" data-aos="fade-right">
+<section id="skills" class="scroll-mt-24 max-w-5xl mx-auto py-12 px-6" data-aos="fade-right">
   <h3 class="text-3xl font-semibold mb-6">Skills & Tools</h3>
-  <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
     <div class="bg-white shadow p-4 rounded">🐍 Python</div>
     <div class="bg-white shadow p-4 rounded">⚙️ FastAPI</div>
     <div class="bg-white shadow p-4 rounded">📊 Machine Learning</div>
@@ -59,7 +55,7 @@
 </section>
 
 <!-- Projects -->
-<section id="projects" class="scroll-mt-20 max-w-5xl mx-auto py-12 px-6" data-aos="fade-left">
+<section id="projects" class="scroll-mt-24 max-w-5xl mx-auto py-12 px-6" data-aos="fade-left">
   <h3 class="text-3xl font-semibold mb-6">Projects</h3>
   <div class="space-y-6">
     <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
@@ -72,7 +68,7 @@
 </section>
 
 <!-- Testimonials Carousel -->
-<section id="testimonials" class="scroll-mt-20 bg-gray-100 py-12 px-6" data-aos="fade-up">
+<section id="testimonials" class="scroll-mt-24 bg-gray-100 py-12 px-6" data-aos="fade-up">
   <div class="max-w-4xl mx-auto">
     <h3 class="text-3xl font-semibold mb-6">Testimonials</h3>
     <div class="swiper">
@@ -91,15 +87,15 @@
 </section>
 
 <!-- Certifications -->
-<section id="certifications" class="scroll-mt-20 max-w-5xl mx-auto py-12 px-6">
-  <h3 class="text-3xl font-semibold mb-4">Certifications</h3>
-  <ul id="certifications-list" class="list-disc ml-6 space-y-2">
-    <!-- Dynamic certifications will be added here -->
+<section id="certifications" class="scroll-mt-24 max-w-5xl mx-auto py-12 px-6" data-aos="fade-up">
+  <h3 class="text-3xl font-semibold mb-6">Certifications</h3>
+  <ul class="list-disc ml-6 space-y-2 text-gray-700" id="certifications-list">
+    <li><a href="#" class="text-blue-600 underline" target="_blank">Google Data Analytics Professional Certificate</a></li>
   </ul>
 </section>
 
 <!-- Contact -->
-<section id="contact" class="scroll-mt-20 max-w-5xl mx-auto py-12 px-6">
+<section id="contact" class="scroll-mt-24 max-w-5xl mx-auto py-12 px-6">
   <h3 class="text-3xl font-semibold mb-4">Contact Me</h3>
   <form class="space-y-4">
     <input type="text" placeholder="Your Name" class="w-full border p-2 rounded" required />
@@ -110,7 +106,7 @@
 </section>
 
 <!-- Modal -->
-<div id="modal" role="dialog" aria-modal="true" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
   <div class="bg-white rounded-lg p-6 w-80">
     <h2 id="modalTitle" class="text-xl font-bold mb-4">Login</h2>
     <form id="authForm" class="space-y-4">
